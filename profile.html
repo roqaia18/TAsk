@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile</title>
+    <meta name="description" content="Constructions web site">
+    <meta name="keywords" content="Constructions,Building,House,Finishes">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body >
+    <header >
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top "style="background-color: #042F39;height: 60px;">
+            <div class="container">
+          <a class="navbar-brand" href="#">Constructions</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="signin"href="login-registration.html">Sign in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="firebase.auth().signOut().then(() => {
+                location.replace('home.html');
+                }).catch((error) => {
+                  // An error happened.
+                });
+              // document.getElementById('signout').style.display='none';
+               //document.getElementById('signin').style.visibility='inline';
+                " id="signout" href="#">Sign out</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="services.html">Services</a>
+              </li>
+              <!-- <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Services
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Flags</a>
+                    <a class="dropdown-item" href="#">Buildings</a>
+                </li> -->
+                <li class="nav-item">
+                  <a class="nav-link" href="./Orders.html"> Order</a>
+                </li>
+            </ul>
+          </div>
+      </div>
+        </nav>
+      </header>
+    <div class="container mb-4" id="f" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-md-12">
+                    <div class="row ">
+                        <div class="col-md-4 ">
+                            <div class="card card1">
+                                <div class="cardR mx-auto" style="margin-top: 50px;">
+                                    <img  id="myimg" src="images/profile.jpg " alt="Profile img" style="margin-bottom:20px;"
+                                        class="img-radius shadow">
+                                    <h6 id="username"></h6>
+                                </div>
+                                <button id="select">change</button>
+                                <button id="upload" onclick="upload()">save</button>
+                                <hr style="color: white;">
+                                <div>
+                                    <p style="color: white;"><i style="color: white;" class="fa fa-mobile"></i>
+                                        <span id="phone"></span>
+                                    </p>
+                                    <p style="color: white;"><i style="color: white;" class="fa fa-envelope"></i>
+                                        <span id="email"></span>
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-8 shadow">
+
+                            <p>Messages <span class="badge badge-danger" id="bg">0</span></p>
+                                <hr>
+                                <div class="row " id="meseagC" style="margin:1px">
+
+                                </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+  
+        <footer style="background-color: #042F39; padding-top: 20px; bottom: 0%;">
+            <div class="container">
+            <div class="row">
+                  <div class="col-5">
+                      <h2 style="color: #c8d6e4;">Constructions</h2>
+                      <p style="color: white;"><i style="color: white;" class="fa fa-mobile"></i>  0101010165667</p>
+                      <p style="color: white;"><i style="color: white;" class="fa fa-envelope"></i>  Construct@comany.com</p>
+                      <p style="color: white;"><i style="color: white;" class="fa fa-home"></i>  50 ali st. cairo</p>
+                  </div>
+           
+              
+                  <div class="col-3 social-container">
+                    <h2 style="color: #c8d6e4;">Useful Links</h2>
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                  <div class="col-3">
+                    <div class="mapouter">
+                      <div class="gmap_canvas">
+                        <iframe width="387" height="265" id="gmap_canvas" src="https://maps.google.com/maps?q=Minya%20egypt&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                        </iframe>
+                        <a href="https://fmovies-online.net">gostream fmovies</a>
+                        <br>
+                        <style>.mapouter{position:relative;text-align:right;height:265px;width:387px;}</style>
+                        <a href="https://www.embedgooglemap.net">embed google map html</a>
+                        <style>.gmap_canvas {overflow:hidden;background:none!important;height:265px;width:387px;}</style>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           <div class="container">
+            <p style="color: white; text-align: center;">&copy; Constructions &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            </div>
+          </footer>
+    
+
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyAdG9L5kfRQiDtRutsbQHzha0WDGk5F6ho",
+            authDomain: "web-firebase-e8885.firebaseapp.com",
+            databaseURL: "https://web-firebase-e8885-default-rtdb.firebaseio.com",
+            projectId: "web-firebase-e8885",
+            storageBucket: "web-firebase-e8885.appspot.com",
+            messagingSenderId: "858767393250",
+            appId: "1:858767393250:web:97183ae83838c4254579bb",
+            measurementId: "G-4FJSL32GKT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+        var email;
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User logged in already or has just logged in.
+                email = user.email;
+                console.log(email);
+                document.getElementById('signout').classList.remove("d-none");
+                document.getElementById('signin').classList.add("d-none");
+            } else {
+                location.replace("home.html");
+            }
+        });
+        console.log(email);
+    //    function on(){
+    // if (email==undefined){
+    //    location.replace("home.html");
+    // }
+
+
+       
+            document.getElementById("username").innerHTML = " ";
+            document.getElementById("phone").innerHTML = " ";
+            document.getElementById("email").innerHTML = " ";
+           firebase.database().ref("users/").once('value').then((snapshot) => {
+                var data = snapshot.val();
+                for (const u in data) {
+                    if (email == data[u].email) {
+                        document.getElementById("username").innerHTML = data[u].name1 + " " + data[u].name2;
+                        document.getElementById("phone").innerHTML = data[u].phone;
+                        document.getElementById("email").innerHTML = data[u].email;
+                        break;
+                    }
+                }
+                 firebase.database().ref("userPic/").once('value').then((snapshot) => {
+                    var data2 = snapshot.val();
+                    for (const i in data2) {
+                        if (email == data2[i].name) {
+                            document.getElementById("myimg").src = data2[i].link;
+                            break;
+                        }
+                    }
+                });
+
+                // ...
+            });
+        
+
+
+        var imgName, imgURL
+        var files = [];
+        var reader = new FileReader();
+        document.getElementById("select").onclick = function (e) {
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.onchange = e => {
+                files = e.target.files;
+                reader = new FileReader();
+                reader.onload = function () {
+                    document.getElementById("myimg").src = reader.result;
+                }
+                reader.readAsDataURL(files[0]);
+            }
+            input.click();
+        }
+        function upload() {
+            var userEmail = firebase.auth().currentUser.email;
+            var uploadTask = firebase.storage().ref('userimage/' + userEmail + ".png").put(files[0]);
+            uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
+                imgURL = url;
+                database.ref().child("userPic/").push({
+                    name: userEmail,
+                    link: imgURL
+
+                });
+            }
+            );
+
+        }
+
+
+    </script>
+    <script>
+
+
+// Initialize Firebase
+const db = firebase.firestore();
+    db.collection("ConfirmMessage").get().then((querySnapshot) => {
+        querySnapshot.forEach(doc=>{
+            var ms =doc.data();
+            var Nemail="email : "+email;
+                    if (Nemail== ms.Email) {
+                        var n=parseInt (document.getElementById("bg").innerHTML) ;
+                        console.log(n)
+                        document.getElementById("bg").innerHTML=n+1;
+                        console.log(ms.TypeBuliding);
+                        console.log(ms.message);
+                        console.log(ms.orderData);
+                        console.log(ms.Email);
+                        // document.getElementById("or").innerHTML = ms.TypeBuliding;
+                        // document.getElementById("m").innerHTML = ms.message;
+                        // document.getElementById("d").innerHTML = ms.orderData;
+                        document.getElementById("meseagC").innerHTML+=
+                        `<div class="card border mb-3" style="height: 200px;width: 450px;">
+                                        <p style="margin-left:20px;margin-top: 20px;"id="m">${ms.message}</p>
+                                        <p style="margin-left: 20px; " id="or">${ms.TypeBuliding}</p>
+                                        <p style="margin-left: 20px;" id="d">${ms.orderData}</p>
+                                    </div>
+                                    `
+                    }
+                
+        })
+    })
+    
+    </script>
+     
+</body>
+
+
+</html>
